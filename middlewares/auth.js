@@ -9,6 +9,10 @@ function auth(req, res, next) {
 
         let error = false
 
+        if(!authorization) {
+            return res.status(401).json({ error: "Authorization header is missing" })
+        }
+
         const tokenParts = authorization.split(BEARER_KEYWORD)
 
         if (tokenParts.length < 2) {
@@ -24,14 +28,14 @@ function auth(req, res, next) {
         if (error) {
             return res.status(400).json({ error: 'Bad Auth' })
         }
-
+        
         req.user = tokenIsValid
 
         return next()
     }
     catch (e) {
         console.log(e);
-        return res.status(500).json({error: e})
+        return res.status(500).json({error: e.message})
     }
 }
 
