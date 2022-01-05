@@ -132,5 +132,11 @@ yarn start-watch
                 <b>Mathieu Raimbault</b>
             </a>
         </td>
+        <td align="center">
+            <a href="https://github.com/arcausin">
+                <img src="https://avatars.githubusercontent.com/u/82374375?v=4" height="100" witdh="100"/><br>
+                <b>Alexis D'Ambrosio</b>
+            </a>
+        </td>
     </tr>
 </table>
