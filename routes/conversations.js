@@ -8,11 +8,11 @@ router.use(auth)
 
 router.post('/', createConversation)
 
-router.put("/", updateConversation)
+router.put("/:id", updateConversation)
 
 router.get("/", getConversations)
 
-router.delete("/", deleteConversation)
+router.delete("/:id", deleteConversation)
 
 router.use("/:conversationId/messages", getMessages)
 

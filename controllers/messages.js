@@ -11,7 +11,7 @@ async function getMessages(req, res)
         const { query, user, params } = req
         const { limit } = query
         const { conversationId } = params
-        console.log(params);
+    
         if(!conversationId)
         {
             return res.status(400).json({ error: "Conversation id is missing in query" })
