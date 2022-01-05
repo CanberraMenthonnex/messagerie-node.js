@@ -80,9 +80,9 @@ async function updateConversation(req, res)
 {
     try 
     {
-        const { body, query, user } = req 
+        const { body, params, user } = req 
         const { name } = body 
-        const { id } = query
+        const { id } = params
 
         if(!name) 
         {
@@ -118,8 +118,8 @@ async function deleteConversation(req, res)
 {
     try 
     {
-        const { user, query } = req 
-        const { id } = query 
+        const { user, params } = req 
+        const { id } = params
 
         const conversation = await Conversation.findOne({_id: mongoose.Types.ObjectId(id), users: mongoose.Types.ObjectId(user.id)})
 
