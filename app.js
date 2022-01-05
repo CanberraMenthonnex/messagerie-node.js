@@ -8,7 +8,8 @@ const logger = require('morgan');
 const connectDatabase = require("./database/connect")
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-
+const authRouter = require("./routes/auth")
+const conversationRouter = require("./routes/conversations")
 connectDatabase()
 
 const app = express();
@@ -21,6 +22,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use("/auth", authRouter)
+app.use("/conversations", conversationRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
