@@ -74,7 +74,7 @@ async function login(req, res) {
         if(passwordIsCorrect)
         {
             //Generate jwt token
-            const token = jwt.sign({mail, username: user.username}, process.env.PRIVATE_TOKEN_KEY, {expiresIn: "1d"})
+            const token = jwt.sign({mail, username: user.username, id: user._id}, process.env.PRIVATE_TOKEN_KEY, {expiresIn: "1d"})
             return res.status(200).json({ token })
         }
 
