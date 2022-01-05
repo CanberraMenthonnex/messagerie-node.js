@@ -29,7 +29,6 @@ yarn start-watch
 ```
 
 ## Routes 
-<br>
 
 ### Authentication 
 
@@ -61,8 +60,6 @@ yarn start-watch
 <br>
 
 ### Conversation ressource 
-
-<br>
 
 #### GET
 ```
