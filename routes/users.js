@@ -1,13 +1,23 @@
-const express = require('express');
-const { getUsers, getUser } = require('../controllers/users');
-const { auth } = require("../middlewares/auth")
-const router = express.Router();
+var express = require('express');
+const app = express();
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
+var router = express.Router();
 
+/* GET users listing. */
+router.get('/', function(req, res, next) {
+  res.send('respond with a resource');
+});
+router.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
+});
 
-router.use(auth)
-
-router.get('/', getUsers);
-
-router.get('/profile', getUser)
+io.on('connection', (socket) => {
+//   socket.on('chat message', (msg) => {
+//       io.emit('chat message', msg);
+//   });
+});
 
 module.exports = router;
