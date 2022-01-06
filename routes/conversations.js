@@ -1,7 +1,7 @@
 const express = require("express");
 const { createConversation, getConversations, deleteConversation, updateConversation } = require("../controllers/conversations");
 const { getMessages } = require("../controllers/messages");
-const {auth} = require("../middlewares/auth")
+const { auth } = require("../middlewares/auth")
 const router = express.Router()
 
 router.use(auth)
