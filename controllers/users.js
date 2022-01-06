@@ -1,4 +1,4 @@
-const express = require('express');
+const mongoose = require("mongoose")
 const User = require('../models/user')
 
 const DEFAULT_USER_LIMIT = 10
@@ -25,6 +25,27 @@ async function getUsers(req, res) {
   }
 }
 
+async function getUser(req, res)
+{
+  try 
+  {
+    const user = await User.findOne({_id : mongoose.Types.ObjectId(req.user.id)})
+
+    if(!user)
+    {
+      return res.status(404).json({error: "User not found"})
+    }
+
+    return res.status(200).json({user})
+  }
+  catch(e)
+  {
+    console.log(e);
+    return res.status(500).json({error: "Error occured while fetching user"})
+  }
+}
+
 module.exports = {
-    getUsers
+    getUsers, 
+    getUser
 }
