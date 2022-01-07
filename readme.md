@@ -7,6 +7,9 @@
 
 ## Installation
 
+- Create .env file 
+- Copy/Paste .env.example content in .env with your data
+
 ```
 npm install 
 or
