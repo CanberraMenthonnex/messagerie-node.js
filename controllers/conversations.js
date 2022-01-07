@@ -67,8 +67,7 @@ async function getConversations(req, res)
 
         page = page || 0
         limit = limit || DEFAULT_CONVERSATION_LIMIT
-
-        const conversations = await Conversation.find({users: user.id }).skip(limit * page).limit(limit).populate("users", ["_id", "username"])
+        const conversations = await Conversation.find({users: user.id }).sort("createdAt").skip(limit * page).limit(limit).populate("users", ["_id", "username"])
 
         return res.status(200).json({conversations})
     }
