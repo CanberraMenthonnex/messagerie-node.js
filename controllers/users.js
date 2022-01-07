@@ -7,7 +7,9 @@ const DEFAULT_USER_LIMIT = 10
 async function getUsers(req, res) {
   try {
     const { username, limit } = req.query
-    const filter = {}
+    const filter = {_id: {
+      $ne: mongoose.Types.ObjectId(req.user.id)
+    }}
 
     if (username) {
       filter.username = {
