@@ -26,7 +26,7 @@ async function getMessages(req, res)
         }
 
         const messages = await Message.find({
-            conversationId: conversation._id
+            conversation: conversation._id
         }).sort("-createdAt").limit(limit || DEFAULT_MESSAGE_LIMIT)
 
         return res.status(200).json({ messages })
