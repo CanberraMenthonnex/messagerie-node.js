@@ -16,7 +16,9 @@ async function createConversation(req, res)
             return res.status(400).json({error: "Users field is missing or it has bad informations"})
         }
 
-        const conversationUserIds = [...users, user.id].filter(user => users.filter(itemUser => itemUser === user).length === 1)
+        const conversationUserIds = [...users, user.id]
+
+        console.log({conversationUserIds});
 
         //Check if given users exist
         const conversationUsers = await User.find({ _id: {
@@ -66,7 +68,7 @@ async function getConversations(req, res)
         page = page || 0
         limit = limit || DEFAULT_CONVERSATION_LIMIT
 
-        const conversations = await Conversation.find({users: user.id }).skip(limit * page).limit(limit)
+        const conversations = await Conversation.find({users: user.id }).skip(limit * page).limit(limit).populate("users", ["_id", "username"])
 
         return res.status(200).json({conversations})
     }
