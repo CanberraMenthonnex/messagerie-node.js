@@ -39,7 +39,27 @@ function auth(req, res, next) {
     }
 }
 
+function socketAuth(socket, next) 
+{
+    console.log(socket);
+    const payload = socket[1]
+    const {token} = payload
+
+    const tokenIsValid = jwt.verify(token, process.env.PRIVATE_TOKEN_KEY)
+
+    if(!tokenIsValid)
+    {
+       return next(new Error("Invalid credential"))
+    }
+
+    socket[1].auth = {user: tokenIsValid}
+
+    console.log("User connected");
+
+    return next()
+}
 
 module.exports = {
-    auth
+    auth,
+    socketAuth
 }
